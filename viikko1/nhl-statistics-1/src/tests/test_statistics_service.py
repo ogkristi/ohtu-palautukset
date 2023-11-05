@@ -45,5 +45,11 @@ class TestStatisticsService(unittest.TestCase):
     def test_team_not_exists(self):
         self.assertEqual(self.stats.team("MED"), [])
 
-    def test_top(self):
-        self.assertEqual(self.stats.top(0), [Player("Gretzky", "EDM", 35, 89)])
+    def test_top_points(self):
+        self.assertEqual(self.stats.top(0, 'points'), [Player("Gretzky", "EDM", 35, 89)])
+
+    def test_top_goals(self):
+        self.assertEqual(self.stats.top(0, 'goals'), [Player("Lemieux", "PIT", 45, 54)])
+
+    def test_top_assists(self):
+        self.assertEqual(self.stats.top(0, 'assists'), [Player("Gretzky", "EDM", 35, 89)])

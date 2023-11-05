@@ -1,6 +1,5 @@
 from player_reader import PlayerReader
-
-
+from operator import attrgetter
 
 class StatisticsService:
     def __init__(self, player_reader):
@@ -23,15 +22,11 @@ class StatisticsService:
 
         return list(players_of_team)
 
-    def top(self, how_many):
-        # metodin käyttämä apufufunktio voidaan määritellä näin
-        def sort_by_points(player):
-            return player.points
-
+    def top(self, how_many, key):
         sorted_players = sorted(
             self._players,
             reverse=True,
-            key=sort_by_points
+            key=attrgetter(key)
         )
 
         result = []
