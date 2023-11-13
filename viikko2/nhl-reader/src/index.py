@@ -1,4 +1,5 @@
 import requests
+from operator import attrgetter
 from player import Player
 
 def main():
@@ -12,6 +13,7 @@ def main():
         players.append(player)
 
     finns = filter(lambda e: e.nationality == "FIN", players)
+    finns = sorted(finns, key=attrgetter('points'), reverse=True)
 
     print("Players from FIN\n")
 
